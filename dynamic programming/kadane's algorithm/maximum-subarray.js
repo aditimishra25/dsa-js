@@ -12,7 +12,7 @@ var maxSubArray = function (nums) {
     if (currentMax < 0) currentMax = 0;
 
     // increment current max
-    currentMax += nums[i];
+    currentMax += num;
 
     // set max sum so far
     if (currentMax > maxSoFar) maxSoFar = currentMax;
