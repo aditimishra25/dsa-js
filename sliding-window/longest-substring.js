@@ -27,3 +27,33 @@ var lengthOfLongestSubstring = function (s) {
 
     return maxLength;
 }
+
+// --------revision-1--------------------
+var lengthOfLongestSubstring = function(s) {
+
+    let left = 0;
+    let maxLength = 0;
+
+    let set = new Set();
+
+    for(let right = 0; right < s.length; right++) {
+
+        // shrink window until duplicate removed
+        while(set.has(s[right])) {
+
+            // remove left character
+            set.delete(s[left]);
+
+            // move left pointer
+            left++;
+        }
+
+        // add current character
+        set.add(s[right]);
+
+        // update max length
+        maxLength = Math.max(maxLength, right - left + 1);
+    }
+
+    return maxLength;
+};
