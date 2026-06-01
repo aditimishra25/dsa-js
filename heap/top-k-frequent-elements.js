@@ -48,3 +48,44 @@ var heapify = (arr, n, i) => {
     heapify(arr, n, largest);
   }
 };
+
+
+// ---------------Approach-2-----------------------------
+var topKFrequent = function(nums, k) {
+
+    // Store frequency of each number
+    const count = {};
+
+    for (const num of nums) {
+        count[num] = (count[num] || 0) + 1;
+    }
+
+    // bucket[i] = numbers that appear i times
+    const bucket = Array(nums.length + 1)
+        .fill()
+        .map(() => []);
+
+    // Put each number into its frequency bucket
+    for (const num in count) {
+        const freq = count[num];
+
+        bucket[freq].push(Number(num));
+    }
+
+    const result = [];
+
+    // Start from highest frequency
+    for (let i = bucket.length - 1; i >= 0; i--) {
+
+        // Add all numbers from this bucket
+        for (const num of bucket[i]) {
+
+            result.push(num);
+
+            // Stop once we have k elements
+            if (result.length === k) {
+                return result;
+            }
+        }
+    }
+};
