@@ -3,6 +3,18 @@
  * @param {string} p
  * @return {number[]}
  */
+
+
+// Fixed-size Sliding Window
+
+// 1. Count characters in p
+// 2. Count characters in current window
+// 3. If counts match -> anagram found
+// 4. Slide window:
+//    - Add right character
+//    - Remove left character
+// 5. Repeat
+
 var findAnagrams = function(s, p) {
 
     // Stores starting indices of anagrams
