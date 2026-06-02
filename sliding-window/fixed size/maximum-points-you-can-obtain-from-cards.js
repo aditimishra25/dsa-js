@@ -3,6 +3,18 @@
  * @param {number} k
  * @return {number}
  */
+
+// Problem:
+// Maximum Points From Cards
+
+// Pattern:
+// Fixed Size Sliding Window
+
+// Trick:
+// Instead of picking k cards,
+// find minimum window of size n-k.
+
+
 var maxScore = function(cardPoints, k) {
     let total = cardPoints.reduce((sum, num) => sum + num, 0);
 
