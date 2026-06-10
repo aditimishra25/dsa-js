@@ -50,12 +50,8 @@ var detectCycle = function(head) {
 // Why does this work?
 
 // The proof is mathematical, but the interview rule is:
-
 // After slow and fast meet:
-
 // 1 pointer starts from head
 // 1 pointer starts from meeting point
-
 // Move both 1 step at a time
-
 // They meet at cycle start
