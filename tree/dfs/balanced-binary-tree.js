@@ -30,3 +30,41 @@ var getHeight = (root, res) => {
     // Return height of current subtree
     return 1 + Math.max(leftHeight, rightHeight);
 };
+
+// --------------optimal solution------------------------------
+var isBalanced = function(root) {
+    // If getHeight returns -1,
+    // some subtree is unbalanced
+    return getHeight(root) !== -1;
+};
+
+var getHeight = (root) => {
+    // Empty tree has height 0
+    if (!root) {
+        return 0;
+    }
+
+    // Get left subtree height
+    const leftHeight = getHeight(root.left);
+
+    // Left subtree already unbalanced
+    if (leftHeight === -1) {
+        return -1;
+    }
+
+    // Get right subtree height
+    const rightHeight = getHeight(root.right);
+
+    // Right subtree already unbalanced
+    if (rightHeight === -1) {
+        return -1;
+    }
+
+    // Current node is unbalanced
+    if (Math.abs(leftHeight - rightHeight) > 1) {
+        return -1;
+    }
+
+    // Return height of current subtree
+    return 1 + Math.max(leftHeight, rightHeight);
+};
