@@ -21,3 +21,14 @@ var isSameTree = function (p, q) {
 
     return compLeft && compRight;
 };
+
+// ----------------------revision-1--------------------------------------------
+var isSameTree = function(p, q) {
+    if(!p && !q) return true;
+    if(!p || !q || p.val !== q.val) return false;
+
+    let left = isSameTree(p.left, q.left);
+    let right = isSameTree(p.right, q.right);
+
+    return left && right;
+};
