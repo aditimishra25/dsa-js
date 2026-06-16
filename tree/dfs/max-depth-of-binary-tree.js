@@ -19,3 +19,14 @@ var maxDepth = function (root) {
     return 1 + Math.max(leftDepth, rightDepth);
 
 };
+
+// -----------------------revision-1-------------------------
+var maxDepth = function (root) {
+    if (!root) return 0; //base case
+
+    let leftDepth = maxDepth(root.left)
+    let rightDepth = maxDepth(root.right)
+
+    return 1 + Math.max(leftDepth, rightDepth);
+
+};
