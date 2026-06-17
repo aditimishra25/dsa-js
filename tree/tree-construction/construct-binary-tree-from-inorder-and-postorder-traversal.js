@@ -12,6 +12,17 @@
  * @return {TreeNode}
  */
 
+// Postorder:
+// Left Right Root
+
+// Read from end:
+
+// Root Right Left
+
+// Build:
+// Right first
+// Left second
+
 let postIndex = 0;
 let map = new Map();
 
@@ -37,6 +48,34 @@ var dfs = (postorder, left, right) => {
   root.right = dfs(postorder, mid + 1, right);
 
   // then left
+  root.left = dfs(postorder, left, mid - 1);
+
+  return root;
+};
+
+// -----------------------revision-1-----------------------------------------
+let postIndex = 0;
+let map = new Map();
+var buildTree = function (inorder, postorder) {
+  postIndex = postorder.length - 1;
+  map.clear();
+
+  for (let i = 0; i < inorder.length; i++) {
+    map.set(inorder[i], i);
+  }
+
+  return dfs(postorder, 0, inorder.length - 1);
+};
+
+var dfs = (postorder, left, right) => {
+  if (left > right) return null;
+
+  let rootVal = postorder[postIndex--];
+  let root = new TreeNode(rootVal)
+
+  let mid = map.get(rootVal);
+
+  root.right = dfs(postorder, mid+1, right);
   root.left = dfs(postorder, left, mid - 1);
 
   return root;
