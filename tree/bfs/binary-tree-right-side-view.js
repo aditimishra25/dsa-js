@@ -16,15 +16,17 @@ var rightSideView = function (root) {
     return res;
 };
 
-// var checkLevel = (root, level, res) => {
-//     if (!root) return;
+// -------------------option-1--------------------------------
+var checkLevel = (root, level, res) => {
+    if (!root) return;
 
-//     if(res[level] === undefined) res[level] = root.val;
+    if(res[level] === undefined) res[level] = root.val;
 
-//     checkLevel(root.right, level+1, res)
-//     checkLevel(root.left, level+1, res)
-// }
+    checkLevel(root.right, level+1, res)
+    checkLevel(root.left, level+1, res)
+}
 
+// -------------------option-2--------------------------------
 //using queue
 var checkLevel = (root, level, res) => {
     if (!root) return;
@@ -44,4 +46,21 @@ var checkLevel = (root, level, res) => {
         }
     }
     return res;
+}
+
+// -------------------------------revision-1-------------------------------------
+var rightSideView = function (root) {
+    let res = [];
+    checkLevel(root, 0, res);
+    return res;
+};
+
+function checkLevel(root, level, res){
+    if(!root) return [];
+
+    // if(!res[level]) res[level] = root.val; when res[level] is 0, !0 becomes true thats why using undefined
+    if(res[level] === undefined) res[level] = root.val;
+
+    checkLevel(root.right, level+1, res)
+    checkLevel(root.left, level+1, res);
 }
