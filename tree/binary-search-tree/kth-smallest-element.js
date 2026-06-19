@@ -30,3 +30,32 @@ var inorderTraversal = (root, k) => {
     }
     inorderTraversal(root.right, k)
 }
+
+// -------------------revision-1--------------------
+var kthSmallest = function(root, k) {
+
+    // Stores inorder traversal
+    let res = [];
+
+    // BST inorder traversal gives sorted order
+    inorderTraversal(root, res);
+
+    // k is 1-indexed, array is 0-indexed
+    return res[k - 1];
+};
+
+function inorderTraversal(root, res) {
+
+    // Base case
+    if (!root) return;
+
+    // Left
+    inorderTraversal(root.left, res);
+
+    // Root
+    res.push(root.val);
+
+    // Right
+    inorderTraversal(root.right, res);
+}
+kthSmallest([3,1,4,null,2], 1)
