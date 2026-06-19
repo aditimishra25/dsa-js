@@ -21,3 +21,16 @@ var validCheck = (node, min, max) => {
     }
     return validCheck(node.left, min, node.val) && validCheck(node.right, node.val, max)
 }
+
+// ----------------------------------------revision-1-------------------------------------------
+var isValidBST = function(root) {
+    return validCheck(root, -Infinity, Infinity);
+};
+
+function validCheck(root, min, max){
+    if(!root) return true;
+
+    if(root.val <= min || root.val >= max) return false;
+
+    return validCheck(root.left, min, root.val) && validCheck(root.right, root.val, max)
+}
