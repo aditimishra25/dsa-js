@@ -35,3 +35,22 @@ var convertToBST = (nums, start, end) => {
     return root;
 
 }
+
+// -----------------revision-1---------------------------------------
+var sortedArrayToBST = function(nums) {
+    return convertArrayToBST(nums, 0, nums.length - 1)
+};
+
+convertArrayToBST = (nums, start, end) => {
+    if(start > end) return null;
+
+    let mid = Math.ceil(start + (end - start)/2);
+
+    let root = new TreeNode(nums[mid]);
+
+    root.left = convertArrayToBST(nums, start, mid - 1);
+    root.right = convertArrayToBST(nums, mid+1, end)
+
+    return root;
+
+}
