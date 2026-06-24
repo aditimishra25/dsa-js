@@ -47,3 +47,9 @@ var sortColors = function(nums) {
 
     return nums;
 };
+
+// --------------------revision-1-------------------------------------
+var sortColors = function(nums) {
+
+    
+};
