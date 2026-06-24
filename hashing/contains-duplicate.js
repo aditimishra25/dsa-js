@@ -23,3 +23,13 @@ var containsDuplicate = function (nums) {
     // If no duplicates were found after checking all elements
     return false;
 };
+
+// ------------------revision-1---------------------------------
+var containsDuplicate = function (nums) {
+    let set = new Set();
+    for(num of nums){
+        if(set.has(num)) return true;
+        else set.add(num)
+    }
+    return false;
+};

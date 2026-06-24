@@ -4,6 +4,16 @@
  * @param {string[]} strs - Array of input strings
  * @return {string[][]} - Grouped anagrams
  */
+
+// -----------------------------trick-------------------------
+// Anagram
+//      ↓
+// Sort each word
+//      ↓
+// Use sorted word as HashMap key
+//      ↓
+// Group words with same key
+
 var groupAnagrams = function (strs) {
     // Map to store anagrams
     // key -> sorted version of the word
@@ -27,4 +37,23 @@ var groupAnagrams = function (strs) {
 
     // Return only the grouped anagram values
     return Array.from(res.values());
+};
+
+// -----------------revision-1-----------------------
+var groupAnagrams = function(strs) {
+    if(!strs) return [];
+
+    let res = new Map();
+
+    for(str of strs){
+        let key = str.split('').sort().join('')
+
+        if(!res.has(key)){
+            res.set(key, [])
+        }
+
+        res.get(key).push(str)
+    }
+
+    return Array.from(res.values())
 };

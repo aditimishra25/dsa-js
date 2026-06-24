@@ -34,3 +34,24 @@ var isAnagram = function (s, t) {
     // All character counts match
     return true;
 };
+
+// --------------------revision-1-------------------------------
+var isAnagram = function(s, t) {
+    if(!s.length || !t.length || s.length !== t.length) return false;
+
+    let sCount = {}, tCount = {};
+
+    for(let char of s){
+        sCount[char] = (sCount[char] || 0 ) + 1;
+    }
+
+    for(let char of t){
+        tCount[char] = (tCount[char] || 0 ) + 1;
+    }
+
+    for(key in sCount){
+        if(sCount[key] !== tCount[key]) return false
+    }
+
+    return true;
+};
