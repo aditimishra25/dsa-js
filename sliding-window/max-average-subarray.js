@@ -39,3 +39,21 @@ var findMaxAverage = function (nums, k) {
 
   return maxAvg;
 };
+
+// -------------------------revision-1------------------------------------------
+var findMaxAverage = function (nums, k) {
+  let maxSum = 0;
+
+  for(let i = 0; i<k; i++){
+    maxSum += nums[i]
+  }
+
+  let maxAvg = maxSum/k;
+
+  for(let i=k; i< nums.length; i++){
+    maxSum = maxSum + nums[i] - nums[i-k]
+    maxAvg = Math.max(maxAvg, maxSum/k)
+  }
+
+  return maxAvg
+};
