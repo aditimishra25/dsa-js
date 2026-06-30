@@ -32,65 +32,77 @@
  * @return {number}
  */
 var minSubArrayLen = function (target, nums) {
+  // left pointer of window
+  let left = 0;
 
-    // left pointer of window
-    let left = 0;
+  // stores current window sum
+  let sum = 0;
 
-    // stores current window sum
-    let sum = 0;
+  // stores smallest valid window length found
+  // initialized to Infinity because
+  // we are looking for MINIMUM
+  let minLength = Infinity;
 
-    // stores smallest valid window length found
-    // initialized to Infinity because
-    // we are looking for MINIMUM
-    let minLength = Infinity;
+  /**
+   * right pointer expands the window
+   *
+   * Window:
+   * [left ........ right]
+   */
+  for (let right = 0; right < nums.length; right++) {
+    // add current element into window sum
+    sum += nums[right];
 
     /**
-     * right pointer expands the window
-     *
-     * Window:
-     * [left ........ right]
+     * If current window sum satisfies condition
+     * try shrinking the window from left
+     * to find smaller valid subarray
      */
-    for (let right = 0; right < nums.length; right++) {
+    while (sum >= target) {
+      /**
+       * Calculate current window length
+       *
+       * Example:
+       * left = 2
+       * right = 5
+       *
+       * length = 5 - 2 + 1 = 4
+       */
+      minLength = Math.min(minLength, right - left + 1);
 
-        // add current element into window sum
-        sum += nums[right];
+      /**
+       * Shrink window from left
+       *
+       * Remove left element from sum
+       */
+      sum -= nums[left];
 
-        /**
-         * If current window sum satisfies condition
-         * try shrinking the window from left
-         * to find smaller valid subarray
-         */
-        while (sum >= target) {
-
-            /**
-             * Calculate current window length
-             *
-             * Example:
-             * left = 2
-             * right = 5
-             *
-             * length = 5 - 2 + 1 = 4
-             */
-            minLength = Math.min(
-                minLength,
-                right - left + 1
-            );
-
-            /**
-             * Shrink window from left
-             *
-             * Remove left element from sum
-             */
-            sum -= nums[left];
-
-            // move left pointer forward
-            left++;
-        }
+      // move left pointer forward
+      left++;
     }
+  }
 
-    /**
-     * If minLength was never updated,
-     * no valid subarray exists
-     */
-    return minLength === Infinity ? 0 : minLength;
+  /**
+   * If minLength was never updated,
+   * no valid subarray exists
+   */
+  return minLength === Infinity ? 0 : minLength;
+};
+
+// -------------------------revision-1------------------------------------------
+var minSubArrayLen = function (target, nums) {
+  let left = 0,
+    sum = 0,
+    minLength = Infinity;
+  for (let right = 0; right < nums.length; right++) {
+    sum += nums[right];
+
+    while (sum >= target) {
+      minLength = Math.min(minLength, right - left + 1);
+      sum = sum - nums[left];
+      left++;
+    }
+  }
+ 
+  return minLength === Infinity ? 0 : minLength;
 };
