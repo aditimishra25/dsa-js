@@ -14,38 +14,59 @@
 // Instead of picking k cards,
 // find minimum window of size n-k.
 
+var maxScore = function (cardPoints, k) {
+  let total = cardPoints.reduce((sum, num) => sum + num, 0);
 
-var maxScore = function(cardPoints, k) {
-    let total = cardPoints.reduce((sum, num) => sum + num, 0);
+  if (cardPoints.length === k) {
+    return total;
+  }
 
-    if (cardPoints.length === k) {
-        return total;
-    }
+  let windowSize = cardPoints.length - k;
 
-    let windowSize = cardPoints.length - k;
+  let windowSum = 0;
 
-    let windowSum = 0;
+  for (let i = 0; i < windowSize; i++) {
+    windowSum += cardPoints[i];
+  }
 
-    for (let i = 0; i < windowSize; i++) {
-        windowSum += cardPoints[i];
-    }
+  let minWindowSum = windowSum;
 
-    let minWindowSum = windowSum;
+  let left = 0;
 
-    let left = 0;
+  for (let right = windowSize; right < cardPoints.length; right++) {
+    // Add new element entering window
+    windowSum += cardPoints[right];
 
-    for (let right = windowSize; right < cardPoints.length; right++) {
+    // Remove old element leaving window
+    windowSum -= cardPoints[left];
 
-        // Add new element entering window
-        windowSum += cardPoints[right];
+    left++;
 
-        // Remove old element leaving window
-        windowSum -= cardPoints[left];
+    minWindowSum = Math.min(minWindowSum, windowSum);
+  }
 
-        left++;
-
-        minWindowSum = Math.min(minWindowSum, windowSum);
-    }
-
-    return total - minWindowSum;
+  return total - minWindowSum;
 };
+
+// -------------------------revision-1------------------------------------------
+var maxScore = function (cardPoints, k) {
+  let totalSum = cardPoints.reduce((sum, num) => sum + num, 0);
+
+  if (cardPoints.length == k) return totalSum;
+
+  let windowSize = cardPoints.length - k;
+  let windowSum = 0;
+  for (let i = 0; i < windowSize; i++) {
+    windowSum += cardPoints[i];
+  }
+
+  let minSum = windowSum
+  for (let i = windowSize; i < cardPoints.length; i++) {
+    windowSum = windowSum + cardPoints[i] - cardPoints[i - windowSize]
+    minSum = Math.min(minSum, windowSum);
+  }
+
+  return totalSum - minSum;
+};
+
+maxScore([1, 2, 3, 4, 5, 6, 1], (k = 3));

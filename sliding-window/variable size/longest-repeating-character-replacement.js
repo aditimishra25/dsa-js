@@ -3,7 +3,7 @@
  * @param {number} k
  * @return {number}
  */
-var characterReplacementlast = function (s, k) {
+var characterReplacement = function (s, k) {
   let count = {};
 
   let left = 0;
@@ -49,7 +49,7 @@ var characterReplacement = function (s, k) {
     count[s[right]] = (count[s[right]] || 0) + 1;
 
     maxFreq = Math.max(maxFreq, count[s[right]]);
-    
+
     // How many characters must be replaced to make the entire window consist of the most frequent character.
     // If that number exceeds k, the window is invalid.
     while (right - left + 1 - maxFreq > k) {
