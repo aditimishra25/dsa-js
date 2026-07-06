@@ -83,7 +83,6 @@ function isEqual(obj1, obj2) {
 }
 
 //----------revision-1------------------
-
 var checkInclusion = function (s1, s2) {
   if (s1.length > s2.length) return false;
 
@@ -98,6 +97,45 @@ var checkInclusion = function (s1, s2) {
   if (isEqual(s1Count, s2Count)) return true;
 
   for (let right = s1.length; right < s2.length; right++) {
+    let leftChar = s2[right - s1.length];
+    let rightChar = s2[right];
+
+    s2Count[leftChar]--;
+
+    if (s2Count[leftChar] == 0) {
+      delete s2Count[leftChar];
+    }
+
+    s2Count[rightChar] = (s2Count[rightChar] || 0) + 1;
+
+    if (isEqual(s1Count, s2Count)) return true;
+  }
+  return false;
+};
+
+var isEqual = (s1Count, s2Count) => {
+  for (let key in s1Count) {
+    if (s1Count[key] != s2Count[key]) return false;
+  }
+  return true;
+};
+
+// -------------------------revision-2------------------------------------------
+var checkInclusion = function (s1, s2) {
+  if (s1.length > s2.length) return false;
+
+  let s1Count = {},
+    s2Count = {};
+
+  for (let i = 0; i < s1.length; i++) {
+    s1Count[s1[i]] = (s1Count[s1[i]] || 0) + 1;
+    s2Count[s2[i]] = (s2Count[s2[i]] || 0) + 1;
+  }
+
+  if (isEqual(s1Count, s2Count)) return true;
+
+  let left = 0;
+  for (right = s1.length; right < s2.length; right++) {
     let leftChar = s2[right - s1.length];
     let rightChar = s2[right];
 
