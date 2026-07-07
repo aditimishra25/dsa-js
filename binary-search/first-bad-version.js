@@ -1,6 +1,6 @@
 /**
  * Definition for isBadVersion()
- * 
+ *
  * @param {integer} version number
  * @return {boolean} whether the version is bad
  * isBadVersion = function(version) {
@@ -19,35 +19,51 @@
  * @return {function}
  */
 var solution = function (isBadVersion) {
+  /**
+   * @param {integer} n Total versions
+   * @return {integer} The first bad version
+   */
+  return function (n) {
+    // Binary search range
+    let left = 1,
+      right = n;
 
-    /**
-     * @param {integer} n Total versions
-     * @return {integer} The first bad version
-     */
-    return function (n) {
+    // Continue until the search space is reduced to one element
+    while (left < right) {
+      // Find middle version
+      let mid = Math.floor((left + right) / 2);
 
-        // Binary search range
-        let left = 1, right = n;
+      // If mid is bad,
+      // the first bad version could be mid or before it
+      if (isBadVersion(mid)) {
+        right = mid; // Keep mid in the search space
+      }
+      // If mid is good,
+      // the first bad version must be after mid
+      else {
+        left = mid + 1;
+      }
+    }
 
-        // Continue until the search space is reduced to one element
-        while (left < right) {
+    // When left == right, we found the first bad version
+    return left;
+  };
+};
 
-            // Find middle version
-            let mid = Math.floor((left + right) / 2);
-
-            // If mid is bad,
-            // the first bad version could be mid or before it
-            if (isBadVersion(mid)) {
-                right = mid;  // Keep mid in the search space
-            } 
-            // If mid is good,
-            // the first bad version must be after mid
-            else {
-                left = mid + 1;
-            }
-        }
-
-        // When left == right, we found the first bad version
-        return left;
-    };
+// -------------------------revision-1------------------------------
+var solution = function (isBadVersion) {
+  /**
+   * @param {integer} n Total versions
+   * @return {integer} The first bad version
+   */
+  return function (n) {
+    let left = 1;
+    let right = n;
+    while (left < right) {
+      let mid = Math.floor((left + right) / 2);
+      if (isBadVersion(mid)) right = mid;
+      else left = mid + 1;
+    }
+    return left;
+  };
 };
