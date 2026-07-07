@@ -53,3 +53,21 @@ let backtrack = (open, close, n, curr, result) => {
     backtrack(open, close + 1, n, curr + ")", result);
   }
 };
+
+// ------------------------revision-1------------------------------------
+let result = [];
+var generateParenthesis = function (n) {
+  let result = [];
+  backtrack(0, 0, n, "", result);
+  return result;
+};
+
+backtrack = (open, close, n, curr, result) => {
+  if ((curr.length == 2 * n)) {
+    result.push(curr);
+    return;
+  }
+
+  if (open < n) backtrack(open + 1, close, n, curr + "(", result);
+  if (close < open) backtrack(open, close + 1, n, curr + ")", result);
+};
