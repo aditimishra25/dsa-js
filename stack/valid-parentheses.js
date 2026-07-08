@@ -40,19 +40,36 @@ var isValid = function (s) {
 // ##Approach-2
 
 var isValid = function (s) {
-    let stack = [];
-    let map = {
-        '(': ')',
-        '{': '}',
-        '[': ']',
-    }
+  let stack = [];
+  let map = {
+    "(": ")",
+    "{": "}",
+    "[": "]",
+  };
 
-    for(ch of s){
-        if(map[ch]) stack.push(ch) 
-
-        else{
-            if(map[stack.pop()] !== ch) return false
-        }
+  for (ch of s) {
+    if (map[ch]) stack.push(ch);
+    else {
+      if (map[stack.pop()] !== ch) return false;
     }
-    return stack.length == 0
+  }
+  return stack.length == 0;
+};
+
+// ------------------------revision-1---------------------------------
+var isValid = function (s) {
+  let stack = [];
+  let map = {
+    "(": ")",
+    "{": "}",
+    "[": "]",
+  };
+
+  for (let ch in s) {
+    if (map[ch]) stack.push(ch);
+    else {
+      if (map[stack.pop()] != ch) return false;
+    }
+  }
+  return stack.length == 0;
 };
