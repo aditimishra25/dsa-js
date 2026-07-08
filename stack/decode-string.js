@@ -75,3 +75,33 @@ var decodeString = function (s) {
   // Combine everything remaining in stack
   return stack.join("");
 };
+
+// ------------------------revision-1---------------------------------
+var decodeString = function (s) {
+  let stack = [];
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] !== "]") {
+      stack.push(s[i]);
+    } else {
+      let str = "";
+      while (stack.length && stack.at(-1) != "[") {
+        str = stack.pop() + str;
+      }
+
+      stack.pop();
+
+      let num = "";
+      while (stack.length && !isNaN(stack.at(-1))) {
+        num = stack.pop() + num;
+      }
+
+      let count = Number(num);
+      let decoded = str.repeat(count)
+      stack.push(decoded);
+    }
+  }
+  return stack.join('')
+};
+
+decodeStringNew("3[a]2[bc]"); //aaabcbc
