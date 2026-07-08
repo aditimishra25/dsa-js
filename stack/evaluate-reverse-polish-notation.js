@@ -71,7 +71,7 @@ performOperations = (num1, num2, operator) => {
     case "*":
       return num1 * num2;
     case "/":
-      return num1 / num2;
+      return Math.trunc(num1 / num2);
   }
 };
 
