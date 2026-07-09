@@ -123,3 +123,28 @@ var carFleet = function (target, position, speed) {
 
   return fleetCount;
 };
+
+// ------------------------revision-1---------------------------------
+var carFleet = function (target, position, speed) {
+  let cars = [];
+  for (let i = 0; i < position.length; i++) {
+    let time = (target - position[i]) / speed[i];
+
+    cars.push([position[i], time]);
+  }
+
+  cars.sort((a, b) => b[0] - a[0]);
+
+  let fleetCount = 0;
+  let fleetTime = 0;
+
+  for (let i = 0; i < cars.length; i++) {
+    let carTime = cars[i][1];
+
+    if (carTime > fleetTime) {
+      fleetCount++;
+      fleetTime = carTime;
+    }
+  }
+  return fleetCount;
+};
