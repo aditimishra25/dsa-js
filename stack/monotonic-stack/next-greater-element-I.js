@@ -80,58 +80,80 @@ var nextGreaterElement = function (nums1, nums2) {
  * @param {number[]} nums2
  * @return {number[]}
  */
-var nextGreaterElement = function(nums1, nums2) {
+var nextGreaterElement = function (nums1, nums2) {
+  // Stores next greater element for every index in nums2.
+  // Default is -1 because some elements may not have a greater element.
+  let result = new Array(nums2.length).fill(-1);
 
-    // Stores next greater element for every index in nums2.
-    // Default is -1 because some elements may not have a greater element.
-    let result = new Array(nums2.length).fill(-1);
+  // Monotonic decreasing stack.
+  // Stores indices whose next greater element has not been found yet.
+  let stack = [];
 
-    // Monotonic decreasing stack.
-    // Stores indices whose next greater element has not been found yet.
-    let stack = [];
+  // Process nums2 from left to right
+  for (let i = 0; i < nums2.length; i++) {
+    // If current number is greater than the number
+    // represented by the stack top, then current number
+    // is the answer for that previous index.
+    while (stack.length > 0 && nums2[i] > nums2[stack[stack.length - 1]]) {
+      // Remove the waiting index
+      let prevIndex = stack.pop();
 
-    // Process nums2 from left to right
-    for (let i = 0; i < nums2.length; i++) {
-
-        // If current number is greater than the number
-        // represented by the stack top, then current number
-        // is the answer for that previous index.
-        while (
-            stack.length > 0 &&
-            nums2[i] > nums2[stack[stack.length - 1]]
-        ) {
-
-            // Remove the waiting index
-            let prevIndex = stack.pop();
-
-            // Current number is its next greater element
-            result[prevIndex] = nums2[i];
-        }
-
-        // Current index now waits for its own next greater element
-        stack.push(i);
+      // Current number is its next greater element
+      result[prevIndex] = nums2[i];
     }
 
-    // Build:
-    // value -> next greater value
-    //
-    // Example:
-    // 1 -> 3
-    // 3 -> 4
-    // 4 -> -1
-    // 2 -> -1
-    let map = new Map();
+    // Current index now waits for its own next greater element
+    stack.push(i);
+  }
 
-    for (let i = 0; i < nums2.length; i++) {
-        map.set(nums2[i], result[i]);
-    }
+  // Build:
+  // value -> next greater value
+  //
+  // Example:
+  // 1 -> 3
+  // 3 -> 4
+  // 4 -> -1
+  // 2 -> -1
+  let map = new Map();
 
-    // Build answer for nums1
-    let answer = [];
+  for (let i = 0; i < nums2.length; i++) {
+    map.set(nums2[i], result[i]);
+  }
 
-    for (let num of nums1) {
-        answer.push(map.get(num));
-    }
+  // Build answer for nums1
+  let answer = [];
 
-    return answer;
+  for (let num of nums1) {
+    answer.push(map.get(num));
+  }
+
+  return answer;
 };
+
+// ------------------------revision-3---------------------------------
+var nextGreaterElement = function (nums1, nums2) {
+  let stack = [];
+  let result = new Array(nums2.length).fill(-1);
+
+  for (let i = 0; i < nums2.length; i++) {
+    while (stack.length > 0 && nums2[i] > nums2[stack[stack.length - 1]]) {
+      let prevIndex = stack.pop();
+      result[prevIndex] = nums2[i];
+    }
+    stack.push(i);
+  }
+
+  let map = new Map();
+  for (let i = 0; i < nums2.length; i++) {
+    map.set(nums2[i], result[i]);
+  }
+
+  let answer = [];
+  for(num of nums1){
+    answer.push(map.get(num))
+  }
+
+  return answer;
+};
+
+nextGreaterElement([4, 1, 2], [1, 3, 4, 2]); //[-1,3,-1]
