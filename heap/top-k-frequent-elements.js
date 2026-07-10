@@ -49,43 +49,67 @@ var heapify = (arr, n, i) => {
   }
 };
 
-
 // ---------------Approach-2-----------------------------
-var topKFrequent = function(nums, k) {
+var topKFrequent = function (nums, k) {
+  // Store frequency of each number
+  const count = {};
 
-    // Store frequency of each number
-    const count = {};
+  for (const num of nums) {
+    count[num] = (count[num] || 0) + 1;
+  }
 
-    for (const num of nums) {
-        count[num] = (count[num] || 0) + 1;
+  // bucket[i] = numbers that appear i times
+  const bucket = Array(nums.length + 1)
+    .fill()
+    .map(() => []);
+
+  // Put each number into its frequency bucket
+  for (const num in count) {
+    const freq = count[num];
+
+    bucket[freq].push(Number(num));
+  }
+
+  const result = [];
+
+  // Start from highest frequency
+  for (let i = bucket.length - 1; i >= 0; i--) {
+    // Add all numbers from this bucket
+    for (const num of bucket[i]) {
+      result.push(num);
+
+      // Stop once we have k elements
+      if (result.length === k) {
+        return result;
+      }
     }
-
-    // bucket[i] = numbers that appear i times
-    const bucket = Array(nums.length + 1)
-        .fill()
-        .map(() => []);
-
-    // Put each number into its frequency bucket
-    for (const num in count) {
-        const freq = count[num];
-
-        bucket[freq].push(Number(num));
-    }
-
-    const result = [];
-
-    // Start from highest frequency
-    for (let i = bucket.length - 1; i >= 0; i--) {
-
-        // Add all numbers from this bucket
-        for (const num of bucket[i]) {
-
-            result.push(num);
-
-            // Stop once we have k elements
-            if (result.length === k) {
-                return result;
-            }
-        }
-    }
+  }
 };
+
+// ------------------revision-1---------------------------------
+var topKFrequent = function (nums, k) {
+  let count = {};
+
+  for (num of nums) {
+    count[num] = (count[num] || 0) + 1;
+  }
+
+  let bucket = new Array(nums.length + 1).fill().map(() => []);
+
+  for (num in count) {
+    let freq = count[num];
+    bucket[freq].push(Number(num));
+  }
+  let result = [];
+  for (let i = bucket.length - 1; i >= 0; i--) {
+    for (const num of bucket[i]) {
+      result.push(num);
+      if (result.length === k) {
+        return result;
+      }
+    }
+  }
+  return result;
+};
+
+topKFrequent([1, 1, 1, 2, 2, 3, 4], 2);
