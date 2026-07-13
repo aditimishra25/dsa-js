@@ -50,3 +50,18 @@ var reverseList = function (head) {
   }
   return prev;
 };
+
+// ---------------------revision-2--------------------------
+var reverseList = function (head) {
+  // 1 -> 2 -> 3 -> 4 -> 5
+  let prev = null;
+  let curr = head;
+
+  while (curr !== null) {
+    let temp = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = temp;
+  }
+  return prev;
+};

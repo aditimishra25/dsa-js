@@ -6,19 +6,30 @@
  * }
  */
 
-var middleNode = function(head) {
+var middleNode = function (head) {
+  // Both start at head
+  let slow = head;
+  let fast = head;
 
-    // Both start at head
-    let slow = head;
-    let fast = head;
+  // Move fast twice as fast as slow
+  while (fast !== null && fast.next !== null) {
+    slow = slow.next; // move 1 step
+    fast = fast.next.next; // move 2 steps
+  }
 
-    // Move fast twice as fast as slow
-    while (fast !== null && fast.next !== null) {
-        slow = slow.next;           // move 1 step
-        fast = fast.next.next;      // move 2 steps
-    }
+  // When fast reaches end,
+  // slow will be at middle
+  return slow;
+};
 
-    // When fast reaches end,
-    // slow will be at middle
-    return slow;
+// -------------revision-1-------------------------------
+var middleNode = function (head) {
+  let slow = head;
+  let fast = head;
+
+  while (fast != null && fast.next != null) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  return slow;
 };
