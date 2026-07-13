@@ -123,3 +123,43 @@ function mergeTwoLists(l1, l2) {
   // Return actual head
   return dummy.next;
 }
+
+// ----------------revision-1-----------------------
+var mergeKLists = function (lists) {
+  if (lists.length == 0) return null;
+
+  while (lists.length > 1) {
+    let mergedLists = [];
+    for (let i = 0; i < lists.length; i += 2) {
+      let l1 = lists[i];
+      let l2 = i + 1 < lists.length ? lists[i + 1] : null;
+
+      let merged = mergeTwoLists(l1, l2);
+      mergedLists.push(merged);
+    }
+    lists = mergedLists
+  }
+
+  return lists[0]
+};
+
+mergeTwoLists = (list1, list2) => {
+  let dummy = new ListNode(-1);
+  let tail = dummy;
+
+  while (list1 != null && list2 != null) {
+    if (list1.val > list2.val) {
+      tail.next = list2;
+      list2 = list2.next;
+    } else {
+      tail.next = list1;
+      list1 = list1.next;
+    }
+    tail = tail.next;
+  }
+
+  if (list1 != null) tail.next = list1;
+  if (list2 != null) tail.next = list2;
+
+  return dummy.next;
+};
