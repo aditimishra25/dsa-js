@@ -35,3 +35,14 @@ var hasPathSum = function (root, targetSum) {
     return hasPathSum(root.left, targetSum) || hasPathSum(root.right, targetSum)
 
 };
+
+// -----------------------revision-2--------------------------------
+var hasPathSum = function (root, targetSum) {
+    if(!root) return false;
+
+    if(!root.left && !root.right) return targetSum === root.val;
+
+    targetSum = targetSum - root.val;
+
+    return hasPathSum(root.left, targetSum) || hasPathSum(root.right, targetSum)
+};
