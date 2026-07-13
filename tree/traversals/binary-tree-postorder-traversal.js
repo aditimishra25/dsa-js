@@ -23,3 +23,18 @@ var dfs = (root, res) => {
     dfs(root.right, res);
     res.push(root.val);
 }
+
+// ----------------revision-1---------------
+var postorderTraversal = function (root) {
+  let result = [];
+  dfs(root, result);
+  return result;
+};
+
+dfs = (node, res) => {
+  if (!node) return;
+
+  dfs(node.left, res);
+  dfs(node.right, res);
+  res.push(node.val);
+};

@@ -11,15 +11,30 @@
  * @return {number[]}
  */
 var preorderTraversal = function (root) {
-    let res = [];
-    dfs(root, res);
-    return res;
+  let res = [];
+  dfs(root, res);
+  return res;
 };
 
 var dfs = (root, res) => {
-    if (!root) return null;
+  if (!root) return null;
 
-    res.push(root.val);
-    dfs(root.left, res);
-    dfs(root.right, res);
-} 
+  res.push(root.val);
+  dfs(root.left, res);
+  dfs(root.right, res);
+};
+
+// -------------------revision-1----------------------------
+var preorderTraversal = function (root) {
+  let res = [];
+  dfs(root, res);
+  return res;
+};
+
+dfs = (node, res) => {
+  if (!node) return;
+
+  res.push(node.val);
+  dfs(node.left, res);
+  dfs(node.right, res);
+};

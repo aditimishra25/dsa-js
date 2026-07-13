@@ -11,15 +11,30 @@
  * @return {number[]}
  */
 var inorderTraversal = function (root) {
-    let result = [];
-    dfs(root, result);
-    return result;
+  let result = [];
+  dfs(root, result);
+  return result;
 };
 
 function dfs(node, res) {
-    if (!node) return;
+  if (!node) return;
 
-    dfs(node.left, res);  //visit left subtree
-    res.push(node.val);   // process root node
-    dfs(node.right, res); // visit right subtree
+  dfs(node.left, res); //visit left subtree
+  res.push(node.val); // process root node
+  dfs(node.right, res); // visit right subtree
 }
+
+// -----------------revision-1--------------------------
+var inorderTraversal = function (root) {
+  let result = [];
+  dfs(root, result);
+  return result;
+};
+
+dfs = (node, res) => {
+  if (!node) return;
+
+  dfs(node.left, res);
+  res.push(node.val);
+  dfs(node.right, res);
+};
