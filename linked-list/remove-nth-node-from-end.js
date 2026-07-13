@@ -60,7 +60,7 @@ var removeNthFromEnd = function (head, n) {
   return head;
 };
 
-// ----Approach-1(optimal)
+// ----Approach-2(optimal)
 var removeNthFromEnd = function (head, n) {
   let dummy = new ListNode(0);
   dummy.next = head;
