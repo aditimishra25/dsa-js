@@ -24,6 +24,11 @@
 
 // Use size to split
 
+// *********************
+// Root from preorder
+// Next preorder value = left subtree root
+// Find it in postorder = determine left subtree size
+
 let preIndex = 0;
 let map = new Map();
 
@@ -91,7 +96,37 @@ var dfs = (preorder, postorder, left, right) => {
   let index = map.get(leftChild);
 
   root.left = dfs(preorder, postorder, left, index);
-  root.right = dfs(preorder, postorder, index + 1 , right - 1);
+  root.right = dfs(preorder, postorder, index + 1, right - 1);
+
+  return root;
+};
+
+// -----------------------revision-2-----------------------------
+let postIndex = 0;
+let map = new Map();
+var constructFromPrePost = function (preorder, postorder) {
+  postIndex = 0;
+  map.clear();
+
+  for (let i = 0; i < postorder.length; i++) {
+    map.set(postorder[i], i);
+  }
+  return dfs(preorder, postorder, 0, postorder.length - 1);
+};
+
+dfs = (preorder, postorder, left, right) => {
+  if (left > right) return null;
+  let rootVal = preorder[preIndex++];
+  let root = new TreeNode(rootVal);
+
+  if (left === right) return root;
+
+  let leftChild = preorder[preIndex];
+
+  let index = map.get(leftChild);
+
+  root.left = dfs(preorder, postorder, left, index);
+  root.right = dfs(preorder, postorder, index + 1, right - 1);
 
   return root;
 };
