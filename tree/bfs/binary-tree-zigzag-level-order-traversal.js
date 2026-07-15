@@ -8,57 +8,82 @@
  * Right -> Left
  */
 
-var zigzagLevelOrder = function(root) {
-    // Empty tree
-    if (!root) {
-        return [];
+var zigzagLevelOrder = function (root) {
+  // Empty tree
+  if (!root) {
+    return [];
+  }
+
+  let result = [];
+
+  // Standard BFS queue
+  let queue = [root];
+
+  // Direction flag
+  let leftToRight = true;
+
+  while (queue.length) {
+    // Number of nodes in current level
+    let queueSize = queue.length;
+
+    let level = [];
+
+    // Process exactly one level
+    for (let i = 0; i < queueSize; i++) {
+      let node = queue.shift();
+
+      // Normal direction
+      if (leftToRight) {
+        level.push(node.val);
+      }
+      // Reverse direction
+      else {
+        level.unshift(node.val);
+      }
+
+      // Add children for next level
+      if (node.left) {
+        queue.push(node.left);
+      }
+
+      if (node.right) {
+        queue.push(node.right);
+      }
     }
 
-    let result = [];
+    // Save current level
+    result.push(level);
 
-    // Standard BFS queue
-    let queue = [root];
+    // Flip direction for next level
+    leftToRight = !leftToRight;
+  }
 
-    // Direction flag
-    let leftToRight = true;
+  return result;
+};
 
-    while (queue.length) {
+// ------------------------revision-1------------------------
+var zigzagLevelOrder = function (root) {
+  if (!root) return [];
+  let result = [];
 
-        // Number of nodes in current level
-        let queueSize = queue.length;
+  let queue = [root];
+  let leftToRight = true;
 
-        let level = [];
+  while (queue.length) {
+    let size = queue.length;
+    let level = [];
 
-        // Process exactly one level
-        for (let i = 0; i < queueSize; i++) {
+    for (let i = 0; i < size; i++) {
+      let node = queue.shift();
 
-            let node = queue.shift();
+      if (leftToRight) level.push(node.val);
+      else level.unshift(node.val);
 
-            // Normal direction
-            if (leftToRight) {
-                level.push(node.val);
-            }
-            // Reverse direction
-            else {
-                level.unshift(node.val);
-            }
-
-            // Add children for next level
-            if (node.left) {
-                queue.push(node.left);
-            }
-
-            if (node.right) {
-                queue.push(node.right);
-            }
-        }
-
-        // Save current level
-        result.push(level);
-
-        // Flip direction for next level
-        leftToRight = !leftToRight;
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
     }
-
-    return result;
+    result.push(level);
+    leftToRight = !leftToRight;
+  }
+  return result;
 };
