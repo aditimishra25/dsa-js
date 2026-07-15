@@ -63,3 +63,28 @@ var checkMaxPath = (node, result) => {
         rightGain
     );
 };
+
+// -------------------------revision-1---------------------------------
+var maxPathSum = function(root){
+    let result  ={ 
+        maxSum : -Infinity
+    }
+    checkMaxPath(root,result)
+    return result.maxSum
+}
+
+checkMaxPath = (node, result) => {
+    if(!node) return 0;
+
+    let leftGain = checkMaxPath(node.left, result);
+    let rightGain = checkMaxPath(node.right, result);
+
+    leftGain = Math.max(0, leftGain);
+    rightGain = Math.max(0, rightGain);
+
+    let currentPathSum = node.val + leftGain + rightGain;
+
+    result.maxSum = Math.max(result.maxSum, currentPathSum)
+
+    return node.val + Math.max(leftGain, rightGain)
+}
