@@ -59,3 +59,18 @@ function inorderTraversal(root, res) {
     inorderTraversal(root.right, res);
 }
 kthSmallest([3,1,4,null,2], 1)
+
+// --------------------revision-2----------------------
+var kthSmallest = function(root, k) {
+    let res = [];
+    inorderTraversal(root, res);
+    return res[k-1]
+}
+
+var inorderTraversal = (root, res) =>{
+    if(!root) return;
+
+    inorderTraversal(root.left, res)
+    res.push(root.val)
+    inorderTraversal(root.right, res)
+}
