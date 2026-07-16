@@ -70,3 +70,27 @@ function findMin(node) {
 
   return node;
 }
+
+// ----------------------------revision-1--------------------------
+var deleteNode = function (root, key) {
+  if (!root) return null;
+
+  if (key < root.val) root.left = deleteNode(root.left, key);
+  else if (key > root.val) root.right = deleteNode(root.right, key);
+  else {
+    if (!root.left) return root.right;
+    if (!root.right) return root.left;
+
+    let successor = findMin(root.right);
+    root.val = successor.val;
+    root.right = deleteNode(root.right, successor.val);
+  }
+  return root;
+};
+
+var findMin = (node) => {
+  while (node.left) {
+    node = node.left;
+  }
+  return node;
+};
