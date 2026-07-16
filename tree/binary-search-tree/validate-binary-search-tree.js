@@ -11,26 +11,37 @@
  * @return {boolean}
  */
 var isValidBST = function (root) {
-    return validCheck(root, -Infinity, Infinity)
+  return validCheck(root, -Infinity, Infinity);
 };
 
 var validCheck = (node, min, max) => {
-    if (!node) return true;
-    if (node.val <= min || node.val >= max) {
-        return false;
-    }
-    return validCheck(node.left, min, node.val) && validCheck(node.right, node.val, max)
-}
-
-// ----------------------------------------revision-1-------------------------------------------
-var isValidBST = function(root) {
-    return validCheck(root, -Infinity, Infinity);
+  if (!node) return true;
+  if (node.val <= min || node.val >= max) {
+    return false;
+  }
+  return validCheck(node.left, min, node.val) && validCheck(node.right, node.val, max);
 };
 
-function validCheck(root, min, max){
-    if(!root) return true;
+// ----------------------------------------revision-1-------------------------------------------
+var isValidBST = function (root) {
+  return validCheck(root, -Infinity, Infinity);
+};
 
-    if(root.val <= min || root.val >= max) return false;
+function validCheck(root, min, max) {
+  if (!root) return true;
 
-    return validCheck(root.left, min, root.val) && validCheck(root.right, root.val, max)
+  if (root.val <= min || root.val >= max) return false;
+
+  return validCheck(root.left, min, root.val) && validCheck(root.right, root.val, max);
 }
+
+// ------------------------revision-2------------------------------
+var isValidBST = function (root) {
+  return validCheck(root, -Infinity, Infinity);
+};
+
+var validCheck = (root, min, max) => {
+  if (!root) return true;
+  if (root.val <= min || root.val >= max) return false;
+  return validCheck(root.left, min, root.val) && validCheck(root.right, root.val, max);
+};

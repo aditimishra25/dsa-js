@@ -26,3 +26,11 @@ var searchBST = function (root, val) {
   if (val < root.val) return searchBST(root.left, val);
   return searchBST(root.right, val);
 };
+
+// ----------------------revision-1-------------------------
+var searchBST = function (root, val) {
+  if (!root || root.val === val) return root;
+
+  if (val < root.val) return searchBST(root.left, val);
+  return searchBST(root.right, val);
+};
