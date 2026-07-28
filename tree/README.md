@@ -1,11 +1,16 @@
-````md id="tree-readme"
-# 🌳 Trees
+# 🌳 Trees - Fundamentals
 
-> **"A Tree is a hierarchical data structure where each node has zero or more children, with exactly one root node and no cycles."**
+> **"A Tree is a hierarchical data structure where nodes are connected through edges and every node has exactly one parent except the root."**
 
-Trees are one of the most important topics in coding interviews. They appear in **Binary Trees, Binary Search Trees (BSTs), Heaps, Tries, Segment Trees, N-ary Trees**, and many system design concepts.
+Trees are one of the most important topics in coding interviews.
 
-Most tree problems are solved using **DFS (Recursion)** or **BFS (Queue)**.
+Many advanced structures are based on trees:
+
+- File systems
+- Databases
+- DOM structure
+- Compilers
+- Search engines
 
 ---
 
@@ -14,75 +19,61 @@ Most tree problems are solved using **DFS (Recursion)** or **BFS (Queue)**.
 1. What is a Tree?
 2. Tree Terminology
 3. Binary Tree
-4. Binary Search Tree (BST)
-5. Types of Trees
-6. Tree Traversals
+4. Types of Binary Trees
+5. Tree Representation
+6. Tree Traversal Overview
 7. DFS vs BFS
-8. Time Complexity
-9. Recognition Guide
-10. Common Patterns
-11. Generic Templates
-12. JavaScript Notes
-13. Common Mistakes
-14. Problems Covered
-15. Interview Questions
-16. Revision Cheat Sheet
+8. Recursive Thinking
+9. Tree Problem Patterns
+10. Complexity
+11. Interview Decision Tree
+12. Tree Roadmap
 
 ---
 
 # 1. What is a Tree?
 
-A Tree is a collection of nodes connected by edges.
-
-Unlike graphs,
-
-Trees have
-
-- One Root
-- No Cycles
-- Exactly one path between two nodes
-
-Example
+A tree is a connected graph with:
 
 ```
-        1
-       / \
-      2   3
-     / \
-    4   5
+No cycles
 ```
 
-Root
+and:
 
 ```
-1
+One root node
 ```
 
-Leaves
+Example:
 
 ```
-3
+          A
 
-4
+        /   \
 
-5
+       B     C
+
+      / \
+
+     D   E
 ```
+
+A is the root.
+
+B,C are children.
+
+D,E are leaves.
 
 ---
 
 # 2. Tree Terminology
 
-```
-        A
-       / \
-      B   C
-     / \
-    D   E
-```
+## Node
 
-### Root
+A single element.
 
-Topmost node.
+Example:
 
 ```
 A
@@ -90,91 +81,129 @@ A
 
 ---
 
-### Parent
+## Root
+
+The topmost node.
+
+Example:
 
 ```
+        A  ← root
+       / \
+      B   C
+```
+
+---
+
+## Parent
+
+A node having children.
+
+Example:
+
+```
+A
+
+|
+
 B
 ```
 
-is parent of
-
-```
-D
-```
+A is parent of B.
 
 ---
 
-### Child
+## Child
+
+A node below another node.
+
+Example:
 
 ```
-D
-```
+A
 
-is child of
+|
 
-```
 B
 ```
 
+B is child of A.
+
 ---
 
-### Leaf
+## Leaf Node
 
-Node with no children.
+A node with no children.
+
+Example:
 
 ```
-C
+      A
 
-D
+     / \
 
-E
+    B   C
+```
+
+B and C are leaves.
+
+---
+
+## Height
+
+Number of edges from node to deepest leaf.
+
+Example:
+
+```
+        A
+
+        |
+
+        B
+
+        |
+
+        C
+```
+
+Height:
+
+```
+2
 ```
 
 ---
 
-### Height
+## Depth
 
-Longest path from node to leaf.
+Distance from root to a node.
 
----
-
-### Depth
-
-Distance from root.
-
----
-
-### Subtree
-
-Any node together with all its descendants.
-
-Example
+Example:
 
 ```
-    B
-   / \
-  D   E
+        A  depth 0
+
+        |
+
+        B  depth 1
+
+        |
+
+        C  depth 2
 ```
 
 ---
 
 # 3. Binary Tree
 
-Each node has at most
+A tree where each node has maximum:
 
 ```
-2
+2 children
 ```
 
-children.
-
-```
-      1
-     / \
-    2   3
-```
-
-Children
+Children:
 
 ```
 Left
@@ -182,513 +211,30 @@ Left
 Right
 ```
 
----
-
-Node structure
-
-```javascript
-function TreeNode(val, left = null, right = null) {
-    this.val = val;
-    this.left = left;
-    this.right = right;
-}
-```
-
----
-
-# 4. Binary Search Tree (BST)
-
-Special Binary Tree.
-
-Rule
+Example:
 
 ```
-Left < Root < Right
-```
+        1
 
-Example
-
-```
-        8
        / \
-      3   10
-     / \    \
-    1   6    14
-```
 
-Searching becomes efficient.
-
-Average
-
-```
-O(log n)
+      2   3
 ```
 
 ---
 
-# 5. Types of Trees
-
-## Binary Tree
-
-Maximum 2 children.
-
----
-
-## Binary Search Tree
-
-Ordered tree.
-
----
-
-## Complete Tree
-
-Every level filled except possibly last.
-
----
-
-## Full Tree
-
-Every node has either
-
-```
-0
-
-or
-
-2
-```
-
-children.
-
----
-
-## Perfect Tree
-
-All leaves at same level.
-
-Every internal node has 2 children.
-
----
-
-## Balanced Tree
-
-Height
-
-```
-≈ log n
-```
-
-Example
-
-AVL
-
-Red Black
-
----
-
-## Skewed Tree
-
-Looks like Linked List.
-
-```
-1
-
-↓
-
-2
-
-↓
-
-3
-
-↓
-
-4
-```
-
-Worst-case operations become
-
-```
-O(n)
-```
-
----
-
-# 6. Tree Traversals
-
-## DFS
-
-### Preorder
-
-```
-Root
-
-↓
-
-Left
-
-↓
-
-Right
-```
-
-Example
-
-```
-1
-/ \
-2 3
-```
-
-Result
-
-```
-1 2 3
-```
-
-Template
+Node structure:
 
 ```javascript
-function preorder(root) {
+class TreeNode{
 
-    if (!root) return;
+    constructor(value){
 
-    console.log(root.val);
+        this.val=value;
 
-    preorder(root.left);
+        this.left=null;
 
-    preorder(root.right);
-
-}
-```
-
----
-
-### Inorder
-
-```
-Left
-
-↓
-
-Root
-
-↓
-
-Right
-```
-
-BST
-
-Produces sorted order.
-
-Template
-
-```javascript
-function inorder(root) {
-
-    if (!root) return;
-
-    inorder(root.left);
-
-    console.log(root.val);
-
-    inorder(root.right);
-
-}
-```
-
----
-
-### Postorder
-
-```
-Left
-
-↓
-
-Right
-
-↓
-
-Root
-```
-
-Useful for
-
-Deleting
-
-Calculating heights
-
-Bottom-up problems.
-
-Template
-
-```javascript
-function postorder(root) {
-
-    if (!root) return;
-
-    postorder(root.left);
-
-    postorder(root.right);
-
-    console.log(root.val);
-
-}
-```
-
----
-
-## BFS (Level Order)
-
-Uses Queue.
-
-```
-Level 1
-
-↓
-
-Level 2
-
-↓
-
-Level 3
-```
-
-Template
-
-```javascript
-let queue = [root];
-
-while (queue.length) {
-
-    let node = queue.shift();
-
-    if (node.left) queue.push(node.left);
-
-    if (node.right) queue.push(node.right);
-
-}
-```
-
----
-
-# 7. DFS vs BFS
-
-| DFS | BFS |
-|------|-----|
-| Stack / Recursion | Queue |
-| Goes Deep First | Goes Level by Level |
-| O(h) recursion space | O(w) queue space |
-| Height, Path, Subtree | Level Order, Shortest Path |
-
----
-
-# 8. Time Complexity
-
-| Operation | Complexity |
-|-----------|------------|
-| DFS | O(n) |
-| BFS | O(n) |
-| BST Search (Average) | O(log n) |
-| BST Insert | O(log n) |
-| BST Delete | O(log n) |
-| Worst Case BST | O(n) |
-
----
-
-# 9. Recognition Guide
-
-Ask yourself
-
-□ Binary Tree?
-
-↓
-
-DFS
-
-----------------------
-
-□ Need levels?
-
-↓
-
-BFS
-
-----------------------
-
-□ Need shortest path?
-
-↓
-
-BFS
-
-----------------------
-
-□ Need height?
-
-↓
-
-Postorder DFS
-
-----------------------
-
-□ Need sorted values?
-
-↓
-
-BST Inorder
-
-----------------------
-
-□ Need ancestor?
-
-↓
-
-DFS
-
-----------------------
-
-□ Need path?
-
-↓
-
-DFS + Backtracking
-
----
-
-# 10. Common Patterns
-
-## Pattern 1
-
-Tree Traversal
-
-Problems
-
-- Inorder
-- Preorder
-- Postorder
-
----
-
-## Pattern 2
-
-Top Down DFS
-
-Pass information from parent to child.
-
-Examples
-
-- Path Sum
-- Good Nodes
-- Max Depth
-
----
-
-## Pattern 3
-
-Bottom Up DFS
-
-Return information upward.
-
-Examples
-
-- Diameter
-- Balanced Tree
-- Max Path Sum
-
----
-
-## Pattern 4
-
-BFS
-
-Examples
-
-- Level Order
-- Zigzag
-- Right Side View
-- Average of Levels
-
----
-
-## Pattern 5
-
-BST
-
-Examples
-
-- Search
-- Insert
-- Delete
-- Validate BST
-- Kth Smallest
-
----
-
-## Pattern 6
-
-Tree Construction
-
-Examples
-
-- Preorder + Inorder
-- Inorder + Postorder
-- Preorder + Postorder
-
----
-
-## Pattern 7
-
-Serialization
-
-Convert tree
-
-↓
-
-String
-
-↓
-
-Tree
-
----
-
-# 11. Generic Templates
-
-## DFS
-
-```javascript
-function dfs(root) {
-
-    if (!root) return;
-
-    dfs(root.left);
-
-    dfs(root.right);
-
-}
-```
-
----
-
-## BFS
-
-```javascript
-let queue = [root];
-
-while (queue.length) {
-
-    let size = queue.length;
-
-    for (let i = 0; i < size; i++) {
-
-        let node = queue.shift();
-
-        if (node.left) queue.push(node.left);
-
-        if (node.right) queue.push(node.right);
+        this.right=null;
 
     }
 
@@ -697,146 +243,560 @@ while (queue.length) {
 
 ---
 
-## BST Search
+# 4. Types of Binary Trees
+
+## Full Binary Tree
+
+Every node has:
+
+```
+0 or 2 children
+```
+
+Example:
+
+```
+        A
+
+       / \
+
+      B   C
+```
+
+---
+
+## Complete Binary Tree
+
+All levels filled except possibly last.
+
+Example:
+
+```
+        A
+
+      /   \
+
+     B     C
+
+    /
+   D
+```
+
+---
+
+## Perfect Binary Tree
+
+Every internal node has 2 children.
+
+All leaves are at same level.
+
+Example:
+
+```
+          A
+
+       /     \
+
+      B       C
+
+     / \     / \
+
+    D   E   F   G
+```
+
+---
+
+## Balanced Binary Tree
+
+Height difference between left and right subtree is small.
+
+Used for:
+
+- AVL Tree
+- Red Black Tree
+
+---
+
+# 5. Tree Representation
+
+Example:
+
+```
+        1
+
+      /   \
+
+     2     3
+```
+
+JavaScript:
 
 ```javascript
-function search(root, target) {
-
-    if (!root) return null;
-
-    if (root.val === target) return root;
-
-    if (target < root.val)
-        return search(root.left, target);
-
-    return search(root.right, target);
-
+let root={
+    val:1,
+    left:{
+        val:2,
+        left:null,
+        right:null
+    },
+    right:{
+        val:3,
+        left:null,
+        right:null
+    }
 }
 ```
 
 ---
 
-# 12. JavaScript Notes
+# 6. Tree Traversal Overview
 
-Tree Node
+Traversal means:
 
-```javascript
-function TreeNode(val, left = null, right = null) {
+```
+Visit every node exactly once
+```
 
-    this.val = val;
-    this.left = left;
-    this.right = right;
+Main types:
 
-}
+```
+DFS
+
+BFS
 ```
 
 ---
 
+# DFS Traversals
+
+DFS explores depth.
+
+Three orders:
+
+```
+1. Preorder
+
+2. Inorder
+
+3. Postorder
+```
+
+---
+
+## Preorder
+
+Order:
+
+```
+Root
+
+Left
+
+Right
+```
+
+Example:
+
+```
+        1
+
+      /   \
+
+     2     3
+```
+
+Output:
+
+```
+1 2 3
+```
+
+Used in:
+
+- Copy tree
+- Serialization
+
+---
+
+## Inorder
+
+Order:
+
+```
+Left
+
+Root
+
+Right
+```
+
+Example:
+
+```
+2 1 3
+```
+
+Important:
+
+For BST:
+
+```
+Inorder gives sorted order
+```
+
+---
+
+## Postorder
+
+Order:
+
+```
+Left
+
+Right
+
+Root
+```
+
+Used in:
+
+- Delete tree
+- Calculate subtree values
+
+---
+
+# 7. BFS Traversal
+
+BFS uses:
+
+```
 Queue
+```
 
-```javascript
-let queue = [];
+Visits:
+
+```
+Level by level
+```
+
+Example:
+
+```
+        1
+
+      /   \
+
+     2     3
+
+    /
+
+   4
+```
+
+Output:
+
+```
+[
+[1],
+
+[2,3],
+
+[4]
+]
+```
+
+Used in:
+
+- Level order traversal
+- Right side view
+
+---
+
+# 8. DFS vs BFS
+
+| Feature | DFS | BFS |
+|-|-|-|
+| Data Structure | Stack/Recursion | Queue |
+| Traversal | Deep | Level |
+| Memory | Less | More |
+| Subtree problems | Best | Less useful |
+| Level problems | No | Best |
+
+---
+
+# 9. Recursive Thinking
+
+Most tree problems follow:
+
+```
+Solve left subtree
+
++
+
+Solve right subtree
+
++
+
+Combine result
+```
+
+Example:
+
+Maximum depth:
+
+```
+depth(node)
+
+=
+
+1 + max(left,right)
 ```
 
 ---
 
-Recursive DFS
+Template:
 
 ```javascript
-dfs(root.left);
+function dfs(node){
 
-dfs(root.right);
+    if(!node){
+        return;
+    }
+
+
+    let left=dfs(node.left);
+
+    let right=dfs(node.right);
+
+
+    return answer;
+
+}
 ```
 
 ---
 
-# 13. Common Mistakes
+# 10. Tree Problem Patterns
 
-❌ Forgetting
+## Pattern 1: Return Height
 
-```javascript
-if (!root) return;
+Problems:
+
+- Maximum Depth
+- Balanced Binary Tree
+
+---
+
+## Pattern 2: Compare Trees
+
+Problems:
+
+- Same Tree
+- Subtree
+
+---
+
+## Pattern 3: Path Problems
+
+Problems:
+
+- Path Sum
+- Maximum Path Sum
+- Diameter
+
+---
+
+## Pattern 4: Lowest Common Ancestor
+
+Question:
+
+Find common parent.
+
+Problems:
+
+- LCA Binary Tree
+- LCA BST
+
+---
+
+## Pattern 5: Build Tree
+
+Using:
+
+- Preorder
+- Inorder
+- Postorder
+
+Problems:
+
+- Construct Binary Tree
+
+---
+
+# 11. Complexity
+
+For most tree problems:
+
+Time:
+
+```
+O(N)
+```
+
+because every node visited once.
+
+Space:
+
+Recursive:
+
+```
+O(H)
+```
+
+where:
+
+```
+H = height of tree
 ```
 
 ---
 
-❌ Using preorder instead of inorder.
+Balanced tree:
+
+```
+O(log N)
+```
+
+Worst case:
+
+```
+O(N)
+```
+
+(skewed tree)
 
 ---
 
-❌ Forgetting BFS level loop.
+# 12. Tree Interview Decision Tree
 
-Need
+```
+Need visit every node?
 
-```javascript
-size = queue.length
+        |
+        ↓
+
+      DFS
+
+
+--------------------
+
+
+Need level information?
+
+        |
+        ↓
+
+      BFS
+
+
+--------------------
+
+
+Need sorted order?
+
+        |
+        ↓
+
+       BST
+
+
+--------------------
+
+
+Need build tree?
+
+        |
+        ↓
+
+    Traversals
+
+
+--------------------
+
+
+Need save/recreate tree?
+
+        |
+        ↓
+
+ Serialization
 ```
 
 ---
 
-❌ Not returning values from recursion.
+# Tree Roadmap
+
+```
+1. Tree Basics
+
+        ↓
+
+2. Traversals
+
+        ↓
+
+3. DFS Problems
+
+        ↓
+
+4. BFS Problems
+
+        ↓
+
+5. BST
+
+        ↓
+
+6. Serialization
+
+        ↓
+
+7. Tree Construction
+```
 
 ---
 
-❌ Confusing Tree DFS with Graph DFS.
-
-Trees don't need a visited set because they have no cycles.
-
----
-
-# 14. Problems Covered
+# Problems In This Folder
 
 ## DFS
 
-### Easy
-
 - Maximum Depth (#104)
-- Same Tree (#100)
-- Invert Binary Tree (#226)
-
----
-
-### Medium
-
-- Path Sum (#112)
-- Count Good Nodes (#1448)
-- Diameter of Binary Tree (#543)
+- Diameter (#543)
 - Balanced Binary Tree (#110)
-- Subtree of Another Tree (#572)
-
----
-
-### Hard
-
-- Binary Tree Maximum Path Sum (#124)
+- Same Tree (#100)
+- Subtree (#572)
+- Path Sum (#112)
+- Maximum Path Sum (#124)
+- Lowest Common Ancestor (#236)
 
 ---
 
 ## BFS
 
-- Binary Tree Level Order Traversal (#102)
+- Level Order Traversal (#102)
 - Right Side View (#199)
-- Zigzag Level Order (#103)
-- Average of Levels (#637)
+- Average Levels (#637)
+- Zigzag Traversal (#103)
 
 ---
 
 ## BST
 
-- Search in BST (#700)
-- Insert into BST (#701)
-- Delete Node in BST (#450)
+- Search BST (#700)
+- Insert BST (#701)
+- Delete BST (#450)
 - Validate BST (#98)
 - Kth Smallest (#230)
-- Lowest Common Ancestor of BST (#235)
-
----
-
-## Construction
-
-- Construct from Preorder + Inorder (#105)
-- Construct from Inorder + Postorder (#106)
-- Construct from Preorder + Postorder (#889)
 
 ---
 
@@ -846,282 +806,20 @@ Trees don't need a visited set because they have no cycles.
 
 ---
 
-# 15. Interview Questions
+## Construction
 
-## DFS or BFS?
-
-DFS
-
-When recursion naturally fits.
-
-BFS
-
-When processing by levels or finding the shortest path in an unweighted tree.
+- Build Tree From Preorder/Inorder
+- Build Tree From Postorder/Inorder
+- Build Tree From Preorder/Postorder
 
 ---
 
-## Why does inorder traversal of a BST return sorted values?
-
-Because every left subtree contains smaller values and every right subtree contains larger values.
-
----
-
-## Difference between height and depth?
-
-Height
-
-Distance from a node to its deepest leaf.
-
-Depth
-
-Distance from the root to a node.
-
----
-
-## Why don't trees need a visited set?
-
-Trees contain no cycles.
-
-Each node is reached through exactly one path.
-
----
-
-## Top-down vs Bottom-up DFS?
-
-Top-down
-
-Pass information from parent to child.
-
-Bottom-up
-
-Children compute values and return them to the parent.
-
----
-
-# 16. Decision Tree
-
-```
-Need Tree Traversal?
-
-        │
-        ▼
-       DFS
-
-────────────────────
-
-Need Levels?
-
-        │
-        ▼
-       BFS
-
-────────────────────
-
-Need Height?
-
-        │
-        ▼
- Bottom-Up DFS
-
-────────────────────
-
-Need Path?
-
-        │
-        ▼
- Top-Down DFS
-
-────────────────────
-
-Need Sorted Values?
-
-        │
-        ▼
- BST Inorder
-
-────────────────────
-
-Need Build Tree?
-
-        │
-        ▼
- Recursion + Traversals
-```
-
----
-
-# 17. Problem Progression
-
-## Level 1
-
-- Maximum Depth
-- Same Tree
-- Invert Binary Tree
-
----
-
-## Level 2
-
-- Path Sum
-- Balanced Binary Tree
-- Diameter of Binary Tree
-- Count Good Nodes
-
----
-
-## Level 3
-
-- Binary Tree Level Order
-- Right Side View
-- Zigzag Level Order
-- Subtree of Another Tree
-
----
-
-## Level 4
-
-- Validate BST
-- Kth Smallest
-- Delete Node in BST
-- Lowest Common Ancestor
-
----
-
-## Level 5
-
-- Construct Binary Tree
-- Serialize and Deserialize Binary Tree
-- Binary Tree Maximum Path Sum
-
----
-
-# 18. Revision Cheat Sheet
-
-## Recognition
-
-✔ Binary Tree
-
-✔ BST
-
-✔ Levels
-
-✔ Height
-
-✔ Path
-
-✔ Ancestor
-
-✔ Construction
-
----
-
-## Core Traversals
-
-Preorder
-
-```
-Root → Left → Right
-```
-
-Inorder
-
-```
-Left → Root → Right
-```
-
-Postorder
-
-```
-Left → Right → Root
-```
-
-Level Order
-
-```
-Top → Bottom
-```
-
----
-
-## Complexity
-
-DFS
-
-```
-O(n)
-```
-
-BFS
-
-```
-O(n)
-```
-
-BST Average
-
-```
-O(log n)
-```
-
-BST Worst
-
-```
-O(n)
-```
-
----
-
-## Golden Rules
-
-1. **Every recursive tree solution starts with `if (!root) return`.**
-2. **Use DFS when the answer depends on a path, subtree, or recursion.**
-3. **Use BFS when the answer depends on levels or shortest distance.**
-4. **Inorder traversal of a BST always returns values in sorted order.**
-5. **Think "Top-down" when passing information and "Bottom-up" when combining results from children.**
-
----
-
-# 19. Complete Pattern Map
-
-```
-Trees
-
-│
-├── DFS
-│      ├── Preorder
-│      ├── Inorder
-│      ├── Postorder
-│      ├── Top-Down
-│      └── Bottom-Up
-│
-├── BFS
-│      ├── Level Order
-│      ├── Zigzag
-│      ├── Right Side View
-│      └── Average of Levels
-│
-├── Binary Search Tree
-│      ├── Search
-│      ├── Insert
-│      ├── Delete
-│      ├── Validate
-│      └── Kth Smallest
-│
-├── Tree Construction
-│      ├── Preorder + Inorder
-│      ├── Inorder + Postorder
-│      └── Preorder + Postorder
-│
-└── Advanced
-       ├── Serialization
-       ├── Maximum Path Sum
-       ├── Lowest Common Ancestor
-       └── Diameter
-```
-
-> **Interview Tip:** Before coding any tree problem, ask these three questions:
->
-> 1. **Am I processing nodes depth-first (DFS) or level-by-level (BFS)?**
-> 2. **Should information flow from the root down (top-down) or from the leaves up (bottom-up)?**
-> 3. **Is this a Binary Search Tree?** If yes, use the property **Left < Root < Right** to simplify the solution.
-````
+# Golden Rules
+
+1. **Most tree problems are DFS with recursion.**
+2. **Always define what your DFS returns.**
+3. **Left subtree + Right subtree + Current node is the core pattern.**
+4. **BFS is mainly for level-based questions.**
+5. **BST gives sorted order using inorder traversal.**
+6. **Always check base case: if(!node).**
+7. **Tree recursion becomes easy once you understand the return value.**
