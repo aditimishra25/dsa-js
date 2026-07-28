@@ -1,3 +1,38 @@
+
+----------------------------------------------------------------------------------------------------------------------------
+###### QUICK CHEATSHEET #######
+
+# Recursion
+
+## Recognition
+
+Use when:
+- Smaller subproblem
+- Tree traversal
+- Backtracking
+- Divide and Conquer
+
+## Rules
+
+Base Case
+
+↓
+
+Recursive Call
+
+↓
+
+Return
+
+## Problems
+
+- Fibonacci
+- Climbing Stairs
+- Generate Parentheses
+
+----------------------------------------------------------------------------------------------------------------------------
+
+###### DETAILED NOTES #######
 # 🔁 Recursion
 
 > **"Recursion is a technique where a function solves a problem by calling itself on a smaller version of the same problem until it reaches a base case."**

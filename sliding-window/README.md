@@ -1,4 +1,54 @@
-````md id="sliding-window-readme"
+
+----------------------------------------------------------------------------------------------------------------------------
+###### QUICK CHEATSHEET #######
+# Sliding Window
+
+## Recognition
+
+Use when:
+- Contiguous subarray
+- Contiguous substring
+- Longest/Shortest window
+
+## Types
+
+### Fixed Window
+
+Window size never changes.
+
+### Variable Window
+
+Expand and shrink.
+
+## Template
+
+Expand
+
+↓
+
+Condition
+
+↓
+
+Shrink
+
+↓
+
+Update answer
+
+## Time
+
+O(n)
+
+## Problems
+
+- Maximum Average Subarray
+- Longest Substring
+- Minimum Window Substring
+
+----------------------------------------------------------------------------------------------------------------------------
+
+###### DETAILED NOTES #######
 # 🪟 Sliding Window
 
 > **"Sliding Window is an optimization technique used to solve problems involving contiguous subarrays or substrings by maintaining a moving window instead of recomputing everything."**

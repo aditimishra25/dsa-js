@@ -1,4 +1,49 @@
-````md
+
+----------------------------------------------------------------------------------------------------------------------------
+###### QUICK CHEATSHEET #######
+
+# Dynamic Programming
+
+## Recognition
+
+Optimal
+
++
+
+Overlapping Subproblems
+
+## Steps
+
+State
+
+↓
+
+Transition
+
+↓
+
+Base Case
+
+↓
+
+Memoization / Tabulation
+
+## Patterns
+
+- 1D DP
+- 2D DP
+- Knapsack
+- LIS
+- Interval DP
+
+## Problems
+
+- Maximum Subarray
+
+----------------------------------------------------------------------------------------------------------------------------
+
+###### DETAILED NOTES #######
+
 # 🧠 Dynamic Programming (DP)
 
 > "Dynamic Programming is recursion + remembering answers."

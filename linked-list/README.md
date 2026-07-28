@@ -1,4 +1,38 @@
-````md id="linked-list-readme"
+
+----------------------------------------------------------------------------------------------------------------------------
+###### QUICK CHEATSHEET #######
+
+# Linked List
+
+## Recognition
+
+Use when:
+- Node manipulation
+- Reverse
+- Merge
+- Cycle
+- LRU Cache
+
+## Patterns
+
+- Dummy Node
+- Fast Slow Pointer
+- Reverse
+- Merge
+- Recursion
+
+## Problems
+
+- Reverse Linked List
+- Merge Two Lists
+- Remove Nth Node
+- Reorder List
+- LRU Cache
+
+----------------------------------------------------------------------------------------------------------------------------
+
+###### DETAILED NOTES #######
+
 # 🔗 Linked List
 
 > **"A Linked List is a chain of nodes where each node stores data and a pointer to the next node."**

@@ -1,4 +1,39 @@
-````md id="prefix-sum-readme"
+
+----------------------------------------------------------------------------------------------------------------------------
+###### QUICK CHEATSHEET #######
+
+# Prefix Sum
+
+## Recognition
+
+Use when:
+- Range Sum
+- Subarray Sum
+- Running Total
+
+## Formula
+
+prefix[i]
+
+=
+
+prefix[i-1]
+
++
+
+nums[i]
+
+## Problems
+
+- Subarray Sum Equals K
+
+## Complexity
+
+O(n)
+
+----------------------------------------------------------------------------------------------------------------------------
+
+###### DETAILED NOTES #######
 # ➕ Prefix Sum
 
 > **"Prefix Sum is a preprocessing technique that allows us to answer range sum queries in O(1) after an O(n) preprocessing step."**

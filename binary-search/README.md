@@ -1,3 +1,54 @@
+
+----------------------------------------------------------------------------------------------------------------------------
+###### QUICK CHEATSHEET #######
+
+# Binary Search
+
+## Recognition
+
+Use Binary Search when:
+
+- Sorted array
+- Rotated sorted array
+- Monotonic function
+- Binary Search on Answer
+- First / Last occurrence
+
+## Template
+
+while(left <= right)
+
+↓
+
+mid
+
+↓
+
+Discard half
+
+## Time
+
+O(log n)
+
+## Problems
+
+- Binary Search
+- Search 2D Matrix
+- Search Rotated Array
+- Find Minimum Rotated Array
+- Time Based Key Value Store
+- Median of Two Sorted Arrays
+
+## Common Mistakes
+
+- Mid overflow
+- Infinite loops
+- Wrong boundaries
+
+----------------------------------------------------------------------------------------------------------------------------
+
+###### DETAILED NOTES #######
+
 # 🔍 Binary Search
 
 > "Binary Search is not about searching in a sorted array.

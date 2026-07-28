@@ -1,3 +1,46 @@
+
+----------------------------------------------------------------------------------------------------------------------------
+###### QUICK CHEATSHEET #######
+
+# Hashing
+
+## Recognition
+
+Use HashMap/HashSet when:
+- Fast lookup needed
+- Counting frequencies
+- Duplicate detection
+- Grouping values
+
+## Data Structures
+
+- Map
+- Set
+
+## Time Complexity
+
+Insert : O(1)
+
+Search : O(1)
+
+Delete : O(1)
+
+## Problems
+
+- Contains Duplicate
+- Valid Anagram
+- Group Anagrams
+- Longest Consecutive Sequence
+
+## Common Mistakes
+
+- Forgetting Map vs Object
+- Duplicate insertions
+
+----------------------------------------------------------------------------------------------------------------------------
+
+###### DETAILED NOTES #######
+
 # #️⃣ Hashing
 
 > **"Hashing is the art of trading extra memory for faster lookups."**

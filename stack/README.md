@@ -1,4 +1,40 @@
-````md
+
+----------------------------------------------------------------------------------------------------------------------------
+###### QUICK CHEATSHEET #######
+
+# Stack
+
+## Recognition
+
+Use when:
+- Undo
+- Nested expressions
+- Previous/Next Greater
+- Parentheses
+- DFS simulation
+
+## Variants
+
+- Normal Stack
+- Monotonic Increasing
+- Monotonic Decreasing
+
+## Time
+
+Push O(1)
+
+Pop O(1)
+
+## Problems
+
+- Valid Parentheses
+- Decode String
+- Asteroid Collision
+- Min Stack
+
+----------------------------------------------------------------------------------------------------------------------------
+
+###### DETAILED NOTES #######
 # 📚 Stack
 
 > **"A Stack is a Last-In-First-Out (LIFO) data structure where the last element inserted is the first one removed."**

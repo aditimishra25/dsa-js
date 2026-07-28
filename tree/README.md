@@ -1,3 +1,56 @@
+
+----------------------------------------------------------------------------------------------------------------------------
+###### QUICK CHEATSHEET #######
+
+# Trees
+
+## DFS
+
+- Preorder
+- Inorder
+- Postorder
+
+## BFS
+
+- Level Order
+- Zigzag
+- Right Side View
+
+## BST
+
+- Search
+- Insert
+- Delete
+- Validate
+
+## Construction
+
+- Preorder + Inorder
+- Inorder + Postorder
+
+## Serialization
+
+Serialize / Deserialize
+
+## Complexity
+
+Traversal
+
+O(n)
+
+Height
+
+Balanced
+
+O(log n)
+
+Worst
+
+O(n)
+
+----------------------------------------------------------------------------------------------------------------------------
+
+###### DETAILED NOTES #######
 # 🌳 Trees - Fundamentals
 
 > **"A Tree is a hierarchical data structure where nodes are connected through edges and every node has exactly one parent except the root."**

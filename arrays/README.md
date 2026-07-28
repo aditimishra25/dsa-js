@@ -1,3 +1,45 @@
+
+----------------------------------------------------------------------------------------------------------------------------
+###### QUICK CHEATSHEET #######
+
+
+# Arrays
+
+## Recognition
+
+Use arrays when:
+- Need linear traversal
+- Prefix/Suffix computation
+- In-place modifications
+- Greedy over indices
+
+## Common Patterns
+
+- Prefix Product
+- Running Sum
+- Kadane's Algorithm
+- Simulation
+- Stock Problems
+
+## Time Complexity
+
+Traverse: O(n)
+
+## Problems
+
+- Two Sum
+- Product of Array Except Self
+- Best Time to Buy and Sell Stock
+
+## Common Mistakes
+
+- Off-by-one
+- Extra space when in-place is possible
+
+----------------------------------------------------------------------------------------------------------------------------
+
+###### DETAILED NOTES #######
+
 # 📚 Arrays
 
 ---

@@ -1,3 +1,58 @@
+
+----------------------------------------------------------------------------------------------------------------------------
+###### QUICK CHEATSHEET #######
+
+# Heap (Priority Queue)
+
+## Recognition
+
+Use Heap when:
+
+- K Largest / Smallest
+- Top K
+- Scheduling
+- Streaming
+- Merge K Lists
+- Highest Priority
+
+## Types
+
+### Min Heap
+
+Smallest element first.
+
+### Max Heap
+
+Largest element first.
+
+## Time
+
+Push : O(log n)
+
+Pop : O(log n)
+
+Peek : O(1)
+
+Build Heap : O(n)
+
+## Problems
+
+- Kth Largest Element
+- Top K Frequent
+- K Closest Points
+- Task Scheduler
+- Reorganize String
+- Find Median from Data Stream
+
+## Common Mistakes
+
+- Wrong comparator
+- Forgetting heap size
+
+----------------------------------------------------------------------------------------------------------------------------
+
+###### DETAILED NOTES #######
+
 # 🏔️ Heap (Priority Queue)
 
 > **"A Heap is not a sorted array. It is a data structure that always gives you the highest (or lowest) priority element in O(log n)."**

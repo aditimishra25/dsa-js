@@ -1,3 +1,78 @@
+
+---------------------------------------------------------------------------------------------------------------------------
+###### QUICK CHEATSHEET #######
+
+# Graphs
+
+## Categories
+
+### DFS
+
+Flood Fill
+
+Connected Components
+
+Cycle Detection
+
+### BFS
+
+Shortest Path
+
+Level Traversal
+
+Multi Source BFS
+
+### Topological Sort
+
+Directed Acyclic Graph
+
+Dependencies
+
+Course Schedule
+
+### Union Find
+
+Connected Components
+
+Cycle Detection
+
+Redundant Connection
+
+## Time
+
+DFS : O(V+E)
+
+BFS : O(V+E)
+
+Union Find : O(α(n))
+
+## Problems
+
+DFS
+
+- Number of Islands
+- Max Area
+- Clone Graph
+- Pacific Atlantic
+
+BFS
+
+- Rotting Oranges
+- Word Ladder
+
+Topo Sort
+
+- Course Schedule I
+- Course Schedule II
+
+Union Find
+
+- Redundant Connection
+
+----------------------------------------------------------------------------------------------------------------------------
+
+###### DETAILED NOTES #######
+
 # 🌐 Graphs - Fundamentals
 
 > **"A Graph is a non-linear data structure consisting of nodes (vertices) connected by edges. Graphs are used to represent relationships between objects."**

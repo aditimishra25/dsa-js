@@ -1,4 +1,37 @@
-````md id="two-pointers-readme"
+
+----------------------------------------------------------------------------------------------------------------------------
+###### QUICK CHEATSHEET #######
+
+# Two Pointers
+
+## Recognition
+
+Use when:
+- Sorted arrays
+- Pair problems
+- Opposite ends
+- In-place movement
+
+## Patterns
+
+- Opposite pointers
+- Fast/Slow pointers
+- Dutch National Flag
+
+## Time
+
+O(n)
+
+## Problems
+
+- Valid Palindrome
+- Container With Most Water
+- Three Sum
+- Trapping Rain Water
+
+----------------------------------------------------------------------------------------------------------------------------
+
+###### DETAILED NOTES #######
 # 👈👉 Two Pointers
 
 > **"Two Pointers is a technique where two indices move through an array or string to efficiently solve problems that would otherwise require nested loops."**
