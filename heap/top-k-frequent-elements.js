@@ -112,4 +112,67 @@ var topKFrequent = function (nums, k) {
   return result;
 };
 
+topKFrequent([1, 1, 1, 2, 2, 3, 4], 2); //[1, 2]
+
+// ------------------revision-2(using heap)---------------------------------
+var topKFrequent = function (nums, k) {
+  let map = new Map();
+
+  for (let num of nums) {
+    map.set(num, (map.get(num) || 0) + 1);
+  }
+  console.log(map);
+
+  let heap = [];
+  for (let [num, freq] of map) {
+    heap.push([num, freq]);
+    bubbleUp(heap);
+
+    if (heap.length > k) heapPop(heap);
+  }
+  let result = [];
+  for (let item of heap) {
+    result.push(item[0]);
+  }
+  return result;
+};
+
+bubbleUp = (heap) => {
+  let index = heap.length - 1;
+  while (index > 0) {
+    let parent = Math.floor((index - 1) / 2);
+    if (heap[parent][1] <= heap[index][1]) break;
+    [heap[parent], heap[index]] = [heap[index], heap[parent]];
+    index = parent;
+  }
+};
+
+bubbleDown = (heap) => {
+  let index = 0;
+  while (true) {
+    let left = 2 * index + 1;
+    let right = 2 * index + 2;
+
+    let smallest = index;
+
+    if (left < heap.length && heap[left][1] < heap[smallest][1]) smallest = left;
+    if (right < heap.length && heap[right][1] < heap[smallest][1]) smallest = right;
+    if (smallest == index) break;
+
+    [heap[index], heap[smallest]] = [heap[smallest], heap[index]];
+    index = smallest;
+  }
+};
+
+heapPop = (heap) => {
+  if (heap.length == 1) return heap.pop();
+  let root = heap[0];
+  let last = heap.pop();
+  if (heap.length > 0) {
+    heap[0] = last;
+    bubbleDown(heap);
+  }
+  return root;
+};
+
 topKFrequent([1, 1, 1, 2, 2, 3, 4], 2);
