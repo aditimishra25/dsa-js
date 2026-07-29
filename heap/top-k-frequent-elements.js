@@ -121,8 +121,7 @@ var topKFrequent = function (nums, k) {
   for (let num of nums) {
     map.set(num, (map.get(num) || 0) + 1);
   }
-  console.log(map);
-
+  
   let heap = [];
   for (let [num, freq] of map) {
     heap.push([num, freq]);
