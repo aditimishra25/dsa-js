@@ -1,3 +1,14 @@
+// Available Work
+//       ↓
+//    Max Heap
+
+// Unavailable Work
+//       ↓
+//      Queue
+
+//      Time
+//       ↓
+// Move expired work back into heap
 /**
  *
  * Time Complexity:
