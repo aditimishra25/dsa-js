@@ -12,75 +12,74 @@
  * Space : O(1)
  */
 
-var searchMatrix = function(matrix, target) {
+var searchMatrix = function (matrix, target) {
+  // Number of rows
+  const rows = matrix.length;
 
-    // Number of rows
-    const rows = matrix.length;
+  // Number of columns
+  const cols = matrix[0].length;
 
-    // Number of columns
-    const cols = matrix[0].length;
+  // Instead of binary searching each row,
+  // imagine the entire matrix as one sorted array.
+  //
+  // Example:
+  //
+  // 1   3   5   7
+  // 10 11 16 20
+  // 23 30 34 60
+  //
+  // becomes
+  //
+  // 1 3 5 7 10 11 16 20 23 30 34 60
+  //
+  // So our search space is from
+  // index 0 to rows*cols - 1
 
-    // Instead of binary searching each row,
-    // imagine the entire matrix as one sorted array.
+  let left = 0;
+  let right = rows * cols - 1;
+
+  while (left <= right) {
+    // Standard Binary Search
+    let mid = left + Math.floor((right - left) / 2);
+
+    // Convert the virtual 1D index back
+    // into matrix coordinates.
     //
     // Example:
     //
-    // 1   3   5   7
-    // 10 11 16 20
-    // 23 30 34 60
+    // cols = 4
     //
-    // becomes
+    // mid = 6
     //
-    // 1 3 5 7 10 11 16 20 23 30 34 60
+    // row = 6 / 4 = 1
+    // col = 6 % 4 = 2
     //
-    // So our search space is from
-    // index 0 to rows*cols - 1
+    // matrix[1][2] = 16
 
-    let left = 0;
-    let right = rows * cols - 1;
+    let row = Math.floor(mid / cols); //The quotient tells you which row.
 
-    while (left <= right) {
+    let col = mid % cols; //The remainder tells you how far into that row (the column).
 
-        // Standard Binary Search
-        let mid = left + Math.floor((right - left) / 2);
+    let value = matrix[row][col];
 
-        // Convert the virtual 1D index back
-        // into matrix coordinates.
-        //
-        // Example:
-        //
-        // cols = 4
-        //
-        // mid = 6
-        //
-        // row = 6 / 4 = 1
-        // col = 6 % 4 = 2
-        //
-        // matrix[1][2] = 16
-
-        let row = Math.floor(mid / cols);
-        let col = mid % cols;
-
-        let value = matrix[row][col];
-
-        // Found target
-        if (value === target) {
-            return true;
-        }
-
-        // Target is bigger
-        // Search right half
-        if (value < target) {
-            left = mid + 1;
-        }
-
-        // Target is smaller
-        // Search left half
-        else {
-            right = mid - 1;
-        }
+    // Found target
+    if (value === target) {
+      return true;
     }
 
-    // Target doesn't exist
-    return false;
+    // Target is bigger
+    // Search right half
+    if (value < target) {
+      left = mid + 1;
+    }
+
+    // Target is smaller
+    // Search left half
+    else {
+      right = mid - 1;
+    }
+  }
+
+  // Target doesn't exist
+  return false;
 };
