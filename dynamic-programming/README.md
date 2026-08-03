@@ -1432,3 +1432,25 @@ O(states)
 
 DP is less about memorizing solutions and more about learning to identify **state**, **transition**, and **base cases**.
 ````
+
+// ****************DP Template (Save this!)***************************
+
+// Every time you see a DP problem, follow this checklist:
+
+// 1. Define the state
+//    What does dp[i] or dfs(i) represent?
+
+// 2. Identify the choices
+//    What decisions can I make from this state?
+
+// 3. Write the recurrence
+//    How is the current state computed from smaller states?
+
+// 4. Define the base cases
+//    What are the smallest subproblems with known answers?
+
+// 5. Optimize
+//    - Brute Force
+//    - Memoization
+//    - Bottom-Up
+//    - Space Optimization (if possible)
