@@ -1454,3 +1454,11 @@ DP is less about memorizing solutions and more about learning to identify **stat
 //    - Memoization
 //    - Bottom-Up
 //    - Space Optimization (if possible)
+
+// ****************DP Patterns (Save this!)***************************
+| Problem         | State             | Choices          | Combine      | Base Case              |
+| --------------- | ----------------- | ---------------- | ------------ | ---------------------- |
+| Climbing Stairs | `i`               | 1 step / 2 steps | `+`          | `return 1`             |
+| House Robber    | `i`               | Rob / Skip       | `Math.max()` | `return 0`             |
+| Coin Change     | `amount`          | Choose any coin  | `Math.min()` | `0`, `Infinity`        |
+| Coin Change II  | `(amount, index)` | Take / Skip      | `+`          | `return 1`, `return 0` |
